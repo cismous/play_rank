@@ -1,0 +1,21 @@
+.gift {
+  .title {
+  }
+
+  .list {
+    .item {
+      overflow: hidden;
+      width: 200px;
+      padding: 10px;
+
+      .icon {
+      }
+
+      .name {
+      }
+
+      .num {
+      }
+    }
+  }
+}
