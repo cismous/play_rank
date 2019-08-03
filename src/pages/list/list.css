@@ -1,26 +1,44 @@
 .gift {
+  width: 380px;
+  height: 600px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
+  position: relative;
+  z-index: 9999;
 
   * {
     box-sizing: border-box;
   }
 
-  width: 260px;
+  .bg-video {
+    left: -140px;
+    top: 15px;
+    position: absolute;
+    width: 640px;
+    height: 540px;
+    transform: rotate(90deg);
+    z-index: -1;
+  }
 
   .title {
     text-align: center;
     font-size: 18px;
-    margin-bottom: 10px;
+    font-weight: bold;
+    line-height: 40px;
+    padding: 20px 0 0 8px;
+    color: #fff;
   }
 
   .list {
+    margin-left: 60px;
+    width: 255px;
+
     .item {
       overflow: hidden;
       padding: 10px;
-      margin-top: 10px;
+      margin-top: 6px;
       border-radius: 4px;
       color: #fff;
       background: rgba(0, 0, 0, 0.65);
@@ -55,12 +73,16 @@
       }
     }
 
-    > .user-item {
+    > .user-item,
+    > .gift-item {
       > .icon {
-        width: 48px;
-        height: 48px;
+        $size: 52px;
+        width: $size;
+        height: $size;
       }
+    }
 
+    > .user-item {
       .user-content {
         float: left;
         padding-left: 12px;
@@ -86,11 +108,6 @@
     }
 
     > .gift-item {
-      > .icon {
-        width: 48px;
-        height: 48px;
-      }
-
       > .gift-content {
         float: left;
         padding-left: 12px;

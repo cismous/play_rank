@@ -140,23 +140,29 @@ export const List = (): JSX.Element => {
   }, [])
 
   React.useEffect(() => {
-    PubSub.subscribe('connect', function(msg, data) {
-      console.log(msg, data)
-    })
+    try {
+      PubSub.subscribe('connect', function(msg, data) {
+        console.log(msg, data)
+      })
 
-    PubSub.subscribe('disconnect', function(msg, data) {
-      console.log(msg, data)
-    })
+      PubSub.subscribe('disconnect', function(msg, data) {
+        console.log(msg, data)
+      })
 
-    PubSub.subscribe('gift', function(msg, data: UserSendGift) {
-      console.log(msg, data)
-    })
+      PubSub.subscribe('gift', function(msg, data: UserSendGift) {
+        console.log(msg, data)
+      })
 
-    zbmate.connect()
+      zbmate.connect()
+    } catch (err) {}
   }, [])
 
   return (
     <div className={style.gift}>
+      <video className={style.bgVideo} muted loop autoPlay>
+        <source src='http://zbmate.com//border/lshy/webcam.webm' type='video/webm' />
+      </video>
+
       <div className={style.title}>榜单标题</div>
       <div className={style.list}>
         {giftList.map((gift, i) => (
