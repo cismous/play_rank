@@ -1,12 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:global(.gift-body) {
+  background: #a0d225;
+}
+
 .gift {
   width: 380px;
-  height: 600px;
-  margin-top: 20px;
+  height: 580px;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
   position: relative;
   z-index: 9999;
+  overflow: hidden;
 
   * {
     box-sizing: border-box;
@@ -41,7 +50,7 @@
       margin-top: 6px;
       border-radius: 4px;
       color: #fff;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.25);
 
       &:first-of-type {
         margin-top: 0;

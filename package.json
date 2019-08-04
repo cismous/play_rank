@@ -57,5 +57,10 @@
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.3.6",
     "webpack-dev-server": "3.7.2"
-  }
+  },
+  "browserslist": [
+    "last 10 version",
+    "not dead",
+    "iOS >= 9"
+  ]
 }
