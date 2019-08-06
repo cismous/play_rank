@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as style from './list.css'
 import * as classNames from 'classnames'
 import { Gift, ReceivedGift, UserSendGift } from './list.d'
-import { GIFT_LIST, IS_PROD, VIDEO_LIST } from './constant'
+import { GIFT_LIST, IS_PROD, VIDEO_LIST, COLOR_STYLE } from './constant'
 
 declare const PubSub: {
   subscribe: (type: string, callback: (msg: string, data: any) => void) => void
@@ -91,7 +91,6 @@ export const List = (): JSX.Element => {
 
     const handlerGift = (msg: string, data: UserSendGift) => {
       if (didCancel) return
-      console.log('gift', data)
 
       const { ic: avatar, nn: username, gfcnt: sendGiftNum } = data
       const sendGiftName = data.gift.name
@@ -108,7 +107,6 @@ export const List = (): JSX.Element => {
       if (!~giftIndex) return
 
       const targetGift = giftList[giftIndex]
-      console.log('target', targetGift)
 
       // 当收到的礼物少于目标礼物数量 不操作
       if (sendGiftNum < targetGift.giftNum) return
@@ -133,9 +131,9 @@ export const List = (): JSX.Element => {
   }, [receivedGiftList, giftList, cacheGiftIndex])
 
   return (
-    <div className={style.gift}>
+    <div className={classNames(style.gift, `gift-${giftList.length}`)}>
       <video className={style.bgVideo} muted loop autoPlay>
-        <source src={VIDEO_LIST[0]} type='video/webm' />
+        <source src={VIDEO_LIST[giftList.length - 1]} type='video/webm' />
       </video>
 
       <div className={style.title}>{IS_PROD ? '<%= title %>' : '榜单标题'}</div>
@@ -144,6 +142,7 @@ export const List = (): JSX.Element => {
         {giftList.map((gift, i) => (
           <div
             key={i}
+            style={{ background: COLOR_STYLE }}
             className={classNames(
               style.item,
               receivedGiftList[i] && receivedGiftList[i].sendGiftNum >= gift.giftNum

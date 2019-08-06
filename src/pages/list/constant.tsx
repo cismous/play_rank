@@ -1,3 +1,5 @@
+import { hexToRgb } from './util'
+
 /* eslint-disable max-len */
 
 export const IS_PROD = process.env.NODE_ENV === 'production'
@@ -8,11 +10,23 @@ const giftList = [
   ['<%= gift3Icon %>', '<%= gift3Name %>', '<%= gift3Num %>'],
   ['<%= gift4Icon %>', '<%= gift4Name %>', '<%= gift4Num %>'],
   ['<%= gift5Icon %>', '<%= gift5Name %>', '<%= gift5Num %>'],
-  // ['<%= gift6Icon %>', '<%= gift6Name %>', '<%= gift6Num %>'],
+  ['<%= gift6Icon %>', '<%= gift6Name %>', '<%= gift6Num %>'],
+]
+
+// for test
+const _giftList = [
+  ['<%= gift1Icon %>', '<%= gift1Name %>', '<%= gift1Num %>'],
+  ['<%= gift2Icon %>', '<%= gift2Name %>', '-1'],
+  ['<%= gift3Icon %>', '<%= gift3Name %>', '-1'],
+  ['<%= gift4Icon %>', '<%= gift4Name %>', '-1'],
+  ['<%= gift5Icon %>', '<%= gift5Name %>', '-1'],
   ['<%= gift6Icon %>', '<%= gift6Name %>', '-1'],
 ]
 
-export const GIFT_LIST = [
+const _colorStyle = IS_PROD ? '<%= colorStyle %>' : '#000'
+export const COLOR_STYLE = hexToRgb(_colorStyle, 0.25)
+
+const ORIGIN_GIFT_LIST = [
   {
     giftIcon: IS_PROD
       ? '<%= gift1Icon %>'
@@ -76,20 +90,13 @@ export const GIFT_LIST = [
   },
 ]
 
-for (let i = 0; i < giftList.length; i++) {
-  const gift = giftList[i]
-  for (const val of gift) {
-    if (val === '0' || val === '-1') {
-      GIFT_LIST.splice(i, 1)
-      break
-    }
-  }
-}
+export const GIFT_LIST = ORIGIN_GIFT_LIST.filter((_, i) => !giftList[i].some(val => ['0', '-1'].includes(val)))
 
 export const VIDEO_LIST = [
-  'http://zbmate.com/border/lshy/webcam.webm',
-  'http://zbmate.com/border/shousongbang/hbgz.webm',
-  'http://zbmate.com/border/shousongbang/smfb.webm',
-  'http://zbmate.com/border/shousongbang/lshy.webm',
-  'http://zbmate.com/border/shousongbang/zsfq.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line1.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line2.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line3.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line4.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line5.webm',
+  'http://zbmate.com/border/shousongbang/lshy_line6.webm',
 ]
